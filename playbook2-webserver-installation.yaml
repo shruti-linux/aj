@@ -1,0 +1,20 @@
+---
+- name: INstall the webserver on all the nodes
+  hosts: all
+  tasks:
+  - name: install httpd pkg
+    yum:
+     name: httpd
+     state: present
+   
+  - name: create a webpage
+    copy: 
+     content: " hi this my first playbook , i m happy"
+     dest: /var/www/html/index.html
+
+  - name: start a web service
+    service: 
+     name: httpd
+     state: started
+     enabled: true
+
